@@ -1,5 +1,4 @@
-let deleteLastValue = "";
-export default deleteLastValue = (calculator) => {
+const deleteLastValue = (calculator) => {
     if (calculator.secondNumber !== "" && calculator.operator !== "=") {
         calculator.secondNumber = parseInt(calculator.secondNumber / 10, 10);
     } else {
@@ -7,3 +6,4 @@ export default deleteLastValue = (calculator) => {
     }
     return calculator;
 };
+export default deleteLastValue;

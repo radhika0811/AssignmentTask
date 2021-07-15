@@ -25,18 +25,18 @@ const initializeCalculator = () => {
     const deleteButton = document.getElementById("data-delete");
 
     //Display Numbers on Screen
-    for (const i of numberButtons) {
-        i.addEventListener("click", () => {
-            calculator = handleNumberClick(calculator, parseInt(i.innerHTML));
+    for (const button of numberButtons) {
+        button.addEventListener("click", () => {
+            calculator = handleNumberClick(calculator, parseInt(button.innerHTML));
             setOutputScreen(calculator);
         });
     }
 
 
     //Display Opeartors on Screen
-    for (const i of operatorButtons) {
-        i.addEventListener("click", () => {
-            calculator = handleOperatorClick(calculator, i.innerHTML);
+    for (const button of operatorButtons) {
+        button.addEventListener("click", () => {
+            calculator = handleOperatorClick(calculator, button.innerHTML);
             setInputScreen(calculator);
         });
     }

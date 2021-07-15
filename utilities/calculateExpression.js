@@ -1,4 +1,4 @@
-export const calculateExpression = (calculator) => {
+const calculateExpression = (calculator) => {
     switch (calculator.operator) {
         case '+':
             calculator.result = calculator.firstNumber + calculator.secondNumber;
@@ -27,3 +27,4 @@ export const calculateExpression = (calculator) => {
     }
     return calculator;
 }
+export default calculateExpression;

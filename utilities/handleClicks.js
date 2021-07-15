@@ -1,8 +1,7 @@
-import { calculateExpression } from "./calculateExpression.js";
+import calculateExpression from "./calculateExpression.js";
 import { setInputScreen, setOutputScreen } from "./display.js";
 
-
-export const handleNumberClick = (calculator, digit) => {
+const handleNumberClick = (calculator, digit) => {
     if (calculator.operator === "") {
         calculator.firstNumber = (calculator.firstNumber * 10) + digit;
     } else if (calculator.operator === "=") {
@@ -18,7 +17,7 @@ export const handleNumberClick = (calculator, digit) => {
     return calculator;
 }
 
-export const handleOperatorClick = (calculator, sign) => {
+const handleOperatorClick = (calculator, sign) => {
 
     if (calculator.operator !== "" && calculator.secondNumber !== "") {
         calculator = calculateExpression(calculator);
@@ -33,7 +32,7 @@ export const handleOperatorClick = (calculator, sign) => {
 }
 
 
-export const handleEqualToClick = (calculator) => {
+const handleEqualToClick = (calculator) => {
     calculator = calculateExpression(calculator);
     setInputScreen(calculator);
     calculator.operator = "=";
@@ -41,3 +40,4 @@ export const handleEqualToClick = (calculator) => {
     setOutputScreen(calculator);
     return calculator;
 }
+export { handleNumberClick, handleEqualToClick, handleOperatorClick };
