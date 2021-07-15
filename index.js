@@ -1,38 +1,66 @@
-import { clearScreen } from "./utilities/clearScreen.js";
+import clearScreen from "./utilities/clearScreen.js";
 import {
-    displayNumbers,
-    displayOperators,
-    displayEqualTo,
-} from "./utilities/UpdateDisplay.js";
-import { deleteLastValue } from "./utilities/delete.js";
-const outputScreen = document.getElementById("input-value");
-const inputScreen = document.getElementById("output-value");
-const numberButtons = document.getElementsByClassName("data-value");
-const operatorButtons = document.getElementsByClassName("data-operator");
-const equalToButton = document.getElementById("equalTo");
-const allClearButton = document.getElementById("data-deleteAll");
-const deleteButton = document.getElementById("data-delete");
+    handleNumberClick,
+    handleOperatorClick,
+    handleEqualToClick,
+} from "./utilities/handleClicks.js";
 
-allClearButton.addEventListener("click", () =>
-    clearScreen(outputScreen, inputScreen, "")
-);
+import { setInputScreen, setOutputScreen } from "./utilities/display.js";
+import deleteLastValue from "./utilities/delete.js";
 
-deleteButton.addEventListener("click", () => deleteLastValue(outputScreen));
+const initializeCalculator = () => {
+    let calculator = {
+        firstNumber: "",
+        secondNumber: "",
+        result: "0",
+        operator: "",
+        expression: (firstNumber, secondNumber, operator) => {
+            return firstNumber + operator + secondNumber;
+        },
+    };
+    const numberButtons = document.getElementsByClassName("data-value");
+    const operatorButtons = document.getElementsByClassName("data-operator");
+    const equalToButton = document.getElementById("equalTo");
+    const allClearButton = document.getElementById("data-deleteAll");
+    const deleteButton = document.getElementById("data-delete");
 
-//Display Numbers on Screen
-for (const j of numberButtons) {
-    j.addEventListener("click", () =>
-        displayNumbers(outputScreen, inputScreen, j)
-    );
-}
+    //Display Numbers on Screen
+    for (const i of numberButtons) {
+        i.addEventListener("click", () => {
+            calculator = handleNumberClick(calculator, parseInt(i.innerHTML));
+            setOutputScreen(calculator);
+        });
+    }
 
-//Displaying Operators on Screen
-for (const i of operatorButtons) {
-    i.addEventListener("click", () =>
-        displayOperators(inputScreen, outputScreen, i)
-    );
-}
 
-equalToButton.addEventListener("click", () =>
-    displayEqualTo(inputScreen, outputScreen)
-);
+    //Display Opeartors on Screen
+    for (const i of operatorButtons) {
+        i.addEventListener("click", () => {
+            calculator = handleOperatorClick(calculator, i.innerHTML);
+            setInputScreen(calculator);
+        });
+    }
+
+
+    //Handling all Clear Button Click 
+    allClearButton.addEventListener("click", () => {
+        calculator = clearScreen(calculator);
+        setOutputScreen(calculator);
+        setInputScreen(calculator);
+    });
+
+
+    //Handling equalTo button click
+    equalToButton.addEventListener("click", () => {
+        calculator = handleEqualToClick(calculator);
+    });
+    setOutputScreen(calculator);
+
+    //Handling Delete Button Click
+    deleteButton.addEventListener("click", () => {
+        calculator = deleteLastValue(calculator);
+        setOutputScreen(calculator);
+    });
+};
+
+initializeCalculator();

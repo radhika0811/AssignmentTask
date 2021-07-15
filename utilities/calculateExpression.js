@@ -1,43 +1,29 @@
-let checkOperator;
-const isOperator = (sign) => {
-    if (sign === "+" || sign === "-" || sign === "x" || sign === "/") {
-        checkOperator = sign;
-        return true;
-    }
-    return false;
-};
-
-//Calcualting the given expression
-export const calculateExpression = (expression, flag, result) => {
-    let firstNumber = "";
-    let secondNumber;
-    if (!flag) {
-        expression = expression.slice(0, -1);
-    }
-    let i = 0;
-    while (isOperator(expression[i]) === false) {
-        firstNumber += expression[i];
-        i += 1;
-    }
-    secondNumber = expression.slice(i + 1, expression.length);
-    firstNumber = parseFloat(firstNumber, 10);
-    secondNumber = parseFloat(secondNumber, 10);
-
-    switch (checkOperator) {
-        case "+":
-            result = firstNumber + secondNumber;
+export const calculateExpression = (calculator) => {
+    switch (calculator.operator) {
+        case '+':
+            calculator.result = calculator.firstNumber + calculator.secondNumber;
             break;
-        case "x":
-            result = firstNumber * secondNumber;
+        case '-':
+            calculator.result = calculator.firstNumber - calculator.secondNumber;
             break;
-        case "/":
-            result = firstNumber / secondNumber;
+        case 'x':
+            calculator.result = calculator.firstNumber * calculator.secondNumber;
             break;
-        case "-":
-            result = firstNumber - secondNumber;
+        case '/':
+            if (calculator.secondNumber === 0) {
+                try {
+                    throw 'Division By Zero Error';
+                } catch (err) {
+                    console.log('caught error');
+                } finally {
+                    calculator.result = 0;
+                }
+            } else {
+                calculator.result = calculator.firstNumber / calculator.secondNumber;
+            }
             break;
         default:
             break;
     }
-    return result;
-};
+    return calculator;
+}

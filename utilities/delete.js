@@ -1,3 +1,9 @@
-export const deleteLastValue = (outputScreen) => {
-    outputScreen.innerHTML = outputScreen.innerHTML.slice(0, -1);
+let deleteLastValue = "";
+export default deleteLastValue = (calculator) => {
+    if (calculator.secondNumber !== "" && calculator.operator !== "=") {
+        calculator.secondNumber = parseInt(calculator.secondNumber / 10, 10);
+    } else {
+        calculator.firstNumber = parseInt(calculator.firstNumber / 10, 10);
+    }
+    return calculator;
 };

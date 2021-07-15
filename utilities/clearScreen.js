@@ -1,5 +1,8 @@
-export const clearScreen = (outputScreen, inputScreen, previousOperator) => {
-    outputScreen.innerHTML = "0";
-    inputScreen.innerHTML = "";
-    previousOperator = "";
-};
+  let clearScreen = "";
+  export default clearScreen = (calculator) => {
+      calculator.firstNumber = "";
+      calculator.secondNumber = "";
+      calculator.operator = "";
+      calculator.result = ""
+      return calculator;
+  };
