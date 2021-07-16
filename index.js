@@ -27,7 +27,7 @@ const initializeCalculator = () => {
     //Display Numbers on Screen
     for (const button of numberButtons) {
         button.addEventListener("click", () => {
-            calculator = handleNumberClick(calculator, parseInt(button.innerHTML));
+            handleNumberClick(calculator, parseInt(button.innerHTML));
             setOutputScreen(calculator);
         });
     }
@@ -36,7 +36,7 @@ const initializeCalculator = () => {
     //Display Opeartors on Screen
     for (const button of operatorButtons) {
         button.addEventListener("click", () => {
-            calculator = handleOperatorClick(calculator, button.innerHTML);
+            handleOperatorClick(calculator, button.innerHTML);
             setInputScreen(calculator);
         });
     }
@@ -44,7 +44,7 @@ const initializeCalculator = () => {
 
     //Handling all Clear Button Click 
     allClearButton.addEventListener("click", () => {
-        calculator = clearScreen(calculator);
+        clearScreen(calculator);
         setOutputScreen(calculator);
         setInputScreen(calculator);
     });
@@ -52,13 +52,13 @@ const initializeCalculator = () => {
 
     //Handling equalTo button click
     equalToButton.addEventListener("click", () => {
-        calculator = handleEqualToClick(calculator);
+        handleEqualToClick(calculator);
+        setOutputScreen(calculator);
     });
-    setOutputScreen(calculator);
 
     //Handling Delete Button Click
     deleteButton.addEventListener("click", () => {
-        calculator = deleteLastValue(calculator);
+        deleteLastValue(calculator);
         setOutputScreen(calculator);
     });
 };

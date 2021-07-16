@@ -20,7 +20,12 @@ const handleNumberClick = (calculator, digit) => {
 const handleOperatorClick = (calculator, sign) => {
 
     if (calculator.operator !== "" && calculator.secondNumber !== "") {
-        calculator = calculateExpression(calculator);
+        try {
+            calculateExpression(calculator);
+        } catch (err) {
+            calculator.result = 0;
+            console.log("exception handled");
+        }
         calculator.firstNumber = calculator.result;
         calculator.operator = sign;
         calculator.secondNumber = "";
@@ -33,7 +38,12 @@ const handleOperatorClick = (calculator, sign) => {
 
 
 const handleEqualToClick = (calculator) => {
-    calculator = calculateExpression(calculator);
+    try {
+        calculateExpression(calculator);
+    } catch (err) {
+        calculator.result = 0;
+        console.log("exception handled");
+    }
     setInputScreen(calculator);
     calculator.operator = "=";
     calculator.firstNumber = calculator.result;

@@ -11,13 +11,7 @@ const calculateExpression = (calculator) => {
             break;
         case '/':
             if (calculator.secondNumber === 0) {
-                try {
-                    throw 'Division By Zero Error';
-                } catch (err) {
-                    console.log('caught error');
-                } finally {
-                    calculator.result = 0;
-                }
+                throw 'Division By Zero Error';
             } else {
                 calculator.result = calculator.firstNumber / calculator.secondNumber;
             }
