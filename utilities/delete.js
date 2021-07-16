@@ -4,6 +4,5 @@ const deleteLastValue = (calculator) => {
     } else {
         calculator.firstNumber = parseInt(calculator.firstNumber / 10, 10);
     }
-    return calculator;
 };
 export default deleteLastValue;

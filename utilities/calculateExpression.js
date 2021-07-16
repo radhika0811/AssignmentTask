@@ -19,6 +19,5 @@ const calculateExpression = (calculator) => {
         default:
             break;
     }
-    return calculator;
 }
 export default calculateExpression;

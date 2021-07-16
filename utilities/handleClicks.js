@@ -14,7 +14,6 @@ const handleNumberClick = (calculator, digit) => {
     } else {
         calculator.secondNumber = (calculator.secondNumber * 10) + digit;
     }
-    return calculator;
 }
 
 const handleOperatorClick = (calculator, sign) => {
@@ -33,7 +32,6 @@ const handleOperatorClick = (calculator, sign) => {
     } else {
         calculator.operator = sign;
     }
-    return calculator;
 }
 
 
@@ -48,6 +46,5 @@ const handleEqualToClick = (calculator) => {
     calculator.operator = "=";
     calculator.firstNumber = calculator.result;
     setOutputScreen(calculator);
-    return calculator;
 }
 export { handleNumberClick, handleEqualToClick, handleOperatorClick };
